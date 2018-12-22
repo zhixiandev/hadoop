@@ -25,6 +25,7 @@ public class WordCount {
 			String line = value.toString();
 			StringTokenizer st = new StringTokenizer(line, "\t\r\n\f|,.()<>");
 			while(st.hasMoreTokens()) {
+				word.set(st.nextToken().toLowerCase());
 				context.write(word,lw);
 			}
 		}
