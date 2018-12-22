@@ -47,7 +47,7 @@ public class WordCount {
 	public static void main(String[] args) throws Exception{
 		Configuration conf = new Configuration();
 		Job job = Job.getInstance(conf);
-		job.setJarByClass(WordCount.class);
+		job.setJarByClass(WordCount.class); 
 		job.setMapperClass(WCMapper.class);
 		job.setReducerClass(WCReducer.class);
 		job.setOutputValueClass(LongWritable.class);
