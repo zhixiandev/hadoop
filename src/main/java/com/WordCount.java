@@ -18,7 +18,7 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 public class WordCount {
 	public static class WCMapper extends Mapper<LongWritable,Text,Text,LongWritable>{
-		private final static LongWritable lw = new LongWritable();
+		private final static LongWritable lw = new LongWritable(1);
 		private Text word = new Text();
 		@Override
 		public void map(LongWritable key,Text value,Context context) throws IOException, InterruptedException {
@@ -31,7 +31,7 @@ public class WordCount {
 	}
 	public static class WCReducer extends Reducer<Text, LongWritable, Text, LongWritable>{
 		
-		private LongWritable lw = new LongWritable(1);
+		private LongWritable lw = new LongWritable();
 		
 		protected void reduce(Text key,Iterable<LongWritable> values,Context context) throws IOException, InterruptedException {
 			long sum = 0;
