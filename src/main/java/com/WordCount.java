@@ -31,7 +31,7 @@ public class WordCount {
 	}
 	public static class WCReducer extends Reducer<Text, LongWritable, Text, LongWritable>{
 		
-		private LongWritable lw = new LongWritable();
+		private LongWritable lw = new LongWritable(1);
 		
 		protected void reduce(Text key,Iterable<LongWritable> values,Context context) throws IOException, InterruptedException {
 			long sum = 0;
