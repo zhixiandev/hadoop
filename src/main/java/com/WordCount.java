@@ -27,7 +27,7 @@ public class WordCount {
 			while(st.hasMoreTokens()) {
 				word.set(st.nextToken().toLowerCase());
 				context.write(word,lw);
-			}
+			} 
 		}
 	}
 	public static class WCReducer extends Reducer<Text, LongWritable, Text, LongWritable>{
