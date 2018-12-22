@@ -37,7 +37,6 @@ public class WordCount {
 			long sum = 0;
 			for(LongWritable value:values) {
 				sum += value.get();
-				
 			}
 			lw.set(sum);
 			context.write(key,lw);
