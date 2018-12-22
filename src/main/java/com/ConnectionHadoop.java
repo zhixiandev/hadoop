@@ -12,29 +12,28 @@ import org.apache.hadoop.security.UserGroupInformation;
 
 public class ConnectionHadoop {
 	
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		PrivilegedExceptionAction<Void> pea = new PrivilegedExceptionAction<Void>() {
-			
+
 			@Override
 			public Void run() throws Exception {
 				Configuration config = new Configuration();
-				config.set("fs.defaultFS", "hdfs://192.168.0.138:9000");
-				config.set("hadoop.job.ugi", "bdi");
-				config.setBoolean("dfs.support.append", true);
+				config.set("fs.defaultFS", "hdfs://192.168.0.138:9000/user/bdi");
+//				config.set("hadoop.job.ugi","bdi");
+				config.setBoolean("dfs.support.append",true);
 				
 				FileSystem fs = FileSystem.get(config);
 
-				
 				Path upFileName = new Path("word.txt");
 				Path logFileName = new Path("word.log");
 				if(fs.exists(upFileName)) {
 					fs.delete(upFileName,true);
-					fs.delete(logFileName,true); 
+					fs.delete(logFileName,true);
 				}
 				FSDataOutputStream fsdo = fs.create(upFileName);
-				fsdo.writeUTF("hi hi hi hey hey lol star hi");
+				fsdo.writeUTF("hi hi hi hey hey lol start hi");
 				fsdo.close();
-
+				
 				Path dirName = new Path("/user/bdi");
 				FileStatus[] files = fs.listStatus(dirName);
 				for(FileStatus file:files) {
@@ -42,6 +41,7 @@ public class ConnectionHadoop {
 				}
 				return null;
 			}
+			
 		};
 		
 		UserGroupInformation ugi = UserGroupInformation.createRemoteUser("bdi");
